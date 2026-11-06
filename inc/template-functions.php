@@ -128,7 +128,7 @@ function ridgeline_social_list( $class ) {
 }
 
 /**
- * Logo: the custom logo image when set, otherwise the letter mark and name.
+ * Logo: the custom logo image when set, otherwise the text wordmark.
  */
 function ridgeline_logo() {
 	$home = esc_url( home_url( '/' ) );
@@ -136,16 +136,19 @@ function ridgeline_logo() {
 		echo '<div class="rdg-logo rdg-logo--image">' . get_custom_logo() . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		return;
 	}
-	$name   = ridgeline_mod( 'dealer_name' );
-	$first  = strtok( $name, ' ' );
-	printf(
-		'<a class="rdg-logo" href="%1$s" rel="home"><span class="rdg-logo__mark" aria-hidden="true">%2$s</span><span class="rdg-logo__text"><span class="rdg-logo__name">%3$s</span><span class="rdg-logo__sub">%4$s</span></span><span class="screen-reader-text">%5$s, home</span></a>',
-		$home,
-		esc_html( ridgeline_mod( 'header_logo_letter' ) ),
-		esc_html( $first ? $first : $name ),
-		esc_html( ridgeline_mod( 'dealer_tagline' ) ),
-		esc_html( $name )
-	);
+	$name   = trim( (string) ridgeline_mod( 'header_logo_text' ) );
+	$name   = $name ? $name : 'MowtivatedPwr';
+	$letter = trim( (string) ridgeline_mod( 'header_logo_letter' ) );
+	$sub    = trim( (string) ridgeline_mod( 'dealer_tagline' ) );
+	echo '<a class="rdg-logo" href="' . $home . '" rel="home">';
+	if ( $letter ) {
+		echo '<span class="rdg-logo__mark" aria-hidden="true">' . esc_html( $letter ) . '</span>';
+	}
+	echo '<span class="rdg-logo__text"><span class="rdg-logo__name">' . esc_html( $name ) . '</span>';
+	if ( $sub ) {
+		echo '<span class="rdg-logo__sub">' . esc_html( $sub ) . '</span>';
+	}
+	echo '</span><span class="screen-reader-text">' . esc_html( $name ) . ', home</span></a>';
 }
 
 /**
@@ -160,6 +163,14 @@ function ridgeline_media( $url, $alt = '', $class = '' ) {
 		return sprintf( '<img class="%1$s" src="%2$s" alt="%3$s" loading="lazy">', esc_attr( $class ), esc_url( $url ), esc_attr( $alt ) );
 	}
 	return '<span class="rdg-ph ' . esc_attr( $class ) . '" aria-hidden="true"></span>';
+}
+
+/**
+ * Product photo stand-in. Uses the theme green on a light tint of that green.
+ */
+function ridgeline_product_image_soon( $class = '' ) {
+	$label = __( 'Product Image Coming Soon', 'ridgeline' );
+	return '<span class="rdg-ph rdg-ph--soon ' . esc_attr( $class ) . '" role="img" aria-label="' . esc_attr( $label ) . '">' . esc_html( $label ) . '</span>';
 }
 
 /**

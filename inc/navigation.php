@@ -86,38 +86,23 @@ function ridgeline_fallback_links() {
 }
 
 function ridgeline_nav_items( $context = 'desktop' ) {
-	$shop_url = function_exists( 'ridgeline_shop_url' ) ? ridgeline_shop_url() : home_url( '/' );
-
-	if ( 'desktop' === $context && ridgeline_mod( 'header_shop_mega' ) ) {
-		ridgeline_mega( 'rdg-mega-shop', 'Shop', ridgeline_top_categories(), $shop_url, 'Shop all products →' );
-	} elseif ( 'drawer' === $context ) {
-		echo '<li class="rdg-nav__item"><a class="rdg-nav__link" href="' . esc_url( $shop_url ) . '">Shop all</a></li>';
+	unset( $context );
+	$args = array(
+		'theme_location' => 'primary',
+		'container'      => false,
+		'items_wrap'     => '%3$s',
+		'depth'          => 1,
+		'fallback_cb'    => false,
+		'walker'         => new Ridgeline_Nav_Walker(),
+	);
+	$menu = wp_get_nav_menu_object( 'Main Menu' );
+	if ( ! $menu ) {
+		$menu = wp_get_nav_menu_object( 'main-menu' );
 	}
-
-	if ( has_nav_menu( 'primary' ) ) {
-		wp_nav_menu(
-			array(
-				'theme_location' => 'primary',
-				'container'      => false,
-				'items_wrap'     => '%3$s',
-				'depth'          => 1,
-				'walker'         => new Ridgeline_Nav_Walker(),
-			)
-		);
-	} else {
-		foreach ( ridgeline_fallback_links() as $link ) {
-			if ( is_wp_error( $link[0] ) ) {
-				continue;
-			}
-			echo '<li class="rdg-nav__item"><a class="rdg-nav__link" href="' . esc_url( $link[0] ) . '">' . esc_html( $link[1] ) . '</a></li>';
-		}
+	if ( $menu ) {
+		$args['menu'] = (int) $menu->term_id;
 	}
-
-	if ( 'desktop' === $context && ridgeline_mod( 'header_brands_mega' ) ) {
-		$brands     = ridgeline_brands();
-		$brands_url = $shop_url;
-		ridgeline_mega( 'rdg-mega-brands', 'Brands', $brands, $brands_url, 'All products →' );
-	}
+	wp_nav_menu( $args );
 }
 
 /**

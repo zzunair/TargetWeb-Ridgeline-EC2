@@ -78,7 +78,7 @@ function ridgeline_settings() {
 			'panel'  => 'ridgeline_global',
 			'fields' => array(
 				'dealer_name'    => array( 'label' => 'Business name', 'default' => 'Ridgeline Power Equipment' ),
-				'dealer_tagline' => array( 'label' => 'Logo subtitle', 'default' => 'Power Equipment' ),
+				'dealer_tagline' => array( 'label' => 'Logo subtitle', 'default' => '' ),
 				'dealer_about'   => array( 'label' => 'Short description (footer)', 'type' => 'textarea', 'default' => 'Family-owned since 1974. We sell and service mowers, tractors, snow blowers, chainsaws, generators and utility vehicles — and we answer the phone.' ),
 				'dealer_phone'   => array( 'label' => 'Phone', 'default' => '(717) 555-0142' ),
 				'dealer_text'    => array( 'label' => 'Text / SMS number (empty hides it)', 'default' => '(717) 555-0199' ),
@@ -110,7 +110,8 @@ function ridgeline_settings() {
 			'fields' => array(
 				'header_contact_bar'  => array( 'label' => 'Show contact bar', 'type' => 'checkbox', 'default' => true ),
 				'header_sticky'       => array( 'label' => 'Sticky header', 'type' => 'checkbox', 'default' => true ),
-				'header_logo_letter'  => array( 'label' => 'Logo mark letter (used when no logo image)', 'default' => 'R' ),
+				'header_logo_text'    => array( 'label' => 'Logo text (used when no logo image)', 'default' => 'MowtivatedPwr' ),
+				'header_logo_letter'  => array( 'label' => 'Logo mark letter (used when no logo image)', 'default' => '' ),
 				'header_search_text'  => array( 'label' => 'Search placeholder', 'default' => 'Search model, SKU, brand or product' ),
 				'header_suggestions'  => array( 'label' => 'Show live search suggestions', 'type' => 'checkbox', 'default' => true ),
 				'header_popular'      => array( 'label' => 'Popular categories in search (one per line)', 'type' => 'textarea', 'default' => "Zero-Turn Mowers\nSnow Blowers\nChainsaws\nGenerators\nLawn Tractors\nParts & Filters" ),

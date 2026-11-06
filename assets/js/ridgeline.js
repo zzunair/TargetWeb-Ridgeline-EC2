@@ -175,7 +175,7 @@
 			}
 			var products = data.products.map(function (p) {
 				return '<li><a class="rdg-sr__item" href="' + esc(p.url) + '">' +
-					(p.image ? '<img src="' + esc(p.image) + '" alt="" loading="lazy">' : '<span class="rdg-ph"></span>') +
+					(p.image ? '<img src="' + esc(p.image) + '" alt="" loading="lazy">' : '<span class="rdg-ph rdg-ph--soon">Product Image Coming Soon</span>') +
 					'<span class="rdg-sr__text">' +
 					(p.brand ? '<span class="rdg-sr__brand">' + esc(p.brand) + '</span>' : '') +
 					'<span class="rdg-sr__name">' + esc(p.name) + '</span>' +
@@ -459,7 +459,7 @@
 			}
 			var head = '<tr><th scope="col"><span class="screen-reader-text">Product</span></th>' + products.map(function (p) {
 				return '<th scope="col"><button type="button" class="rdg-cmp__remove" data-rdg-cmp-remove-modal="' + p.id + '" aria-label="Remove ' + esc(p.name) + '">×</button>' +
-					(p.image ? '<img src="' + esc(p.image) + '" alt="">' : '<span class="rdg-ph"></span>') +
+					(p.image ? '<img src="' + esc(p.image) + '" alt="">' : '<span class="rdg-ph rdg-ph--soon">Product Image Coming Soon</span>') +
 					'<span class="rdg-cmptable__brand">' + esc(p.brand) + '</span>' + esc(p.name) + '</th>';
 			}).join('') + '</tr>';
 			var rows = '<tr><th scope="row">Price</th>' + products.map(function (p, i) { return cell(esc(p.price), i === priceBest); }).join('') + '</tr>';

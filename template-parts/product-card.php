@@ -31,7 +31,7 @@ $title_id = 'rdg-card-' . $id;
 ?>
 <article class="rdg-card" data-product-id="<?php echo (int) $id; ?>" aria-labelledby="<?php echo esc_attr( $title_id ); ?>">
 	<a class="rdg-card__media" href="<?php echo esc_url( $url ); ?>" tabindex="-1" aria-hidden="true">
-		<?php echo $has_image ? $image : '<span class="rdg-ph rdg-card__img"></span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<?php echo $has_image ? $image : ridgeline_product_image_soon( 'rdg-card__img' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		<?php if ( $badge ) : ?>
 			<span class="rdg-card__badge<?php echo 'Sale' === $badge ? ' rdg-card__badge--sale' : ''; ?>"><?php echo esc_html( $badge ); ?></span>
 		<?php endif; ?>
