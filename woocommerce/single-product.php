@@ -56,7 +56,7 @@ while ( have_posts() ) :
 								</figure>
 							<?php endforeach; ?>
 						<?php else : ?>
-							<figure class="rdg-gallery__slide is-active"><span class="rdg-ph"></span></figure>
+							<figure class="rdg-gallery__slide is-active"><?php echo ridgeline_product_image_soon(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></figure>
 						<?php endif; ?>
 
 						<?php if ( $product->is_on_sale() && ! $call ) : ?>

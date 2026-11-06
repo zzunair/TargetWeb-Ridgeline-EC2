@@ -3,7 +3,7 @@ Theme Name: TargetWeb - Ridgeline
 Theme URI: https://www.targetweb.com/
 Author: TargetWeb
 Author URI: https://www.targetweb.com/
-Description: WooCommerce theme for outdoor power equipment dealers. Equipment finder, expanded product search (SKU, brand, category, attributes), stock states, call-for-price, product compare, TargetWeb CRM lead form, stock-by-location widget area, maintenance mode and built-in SEO that steps aside for SEO plugins.
+Description: Parent theme for Ridgeline dealer sites. EC2-Child can replace the header, footer, and homepage sections. WooCommerce theme for outdoor power equipment dealers. Equipment finder, expanded product search (SKU, brand, category, attributes), stock states, call-for-price, product compare, TargetWeb CRM lead form, stock-by-location widget area, maintenance mode and built-in SEO that steps aside for SEO plugins.
 Version: 1.0.0
 Tested up to: 6.8
 Requires at least: 6.0
@@ -131,6 +131,19 @@ ul.rdg-grid, ul.rdg-catgrid, ul.rdg-brandgrid, ul.rdg-features, ul.rdg-trust__gr
 
 .rdg-wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); }
 .rdg-ph { display: block; width: 100%; height: 100%; min-height: 100%; background: var(--ph); }
+.rdg-ph--soon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 16px;
+	box-sizing: border-box;
+	text-align: center;
+	color: var(--brand);
+	background: color-mix(in srgb, var(--brand) 14%, var(--surf, #fff));
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 1.35;
+}
 
 /* Type helpers */
 .rdg-h1 { font-size: clamp(calc(var(--fs-h1) * .64), 5vw, var(--fs-h1)); }
@@ -357,6 +370,7 @@ a.rdg-chip:hover { background: var(--ink); color: var(--white); }
 .rdg-sr__item { display: grid; grid-template-columns: 72px 1fr auto; gap: 14px; align-items: center; padding: 10px; border: 1px solid var(--line); color: var(--ink); text-decoration: none; }
 .rdg-sr__item:hover { border-color: var(--ink); box-shadow: var(--sh1); }
 .rdg-sr__item img, .rdg-sr__item .rdg-ph { width: 72px; height: 54px; object-fit: cover; }
+.rdg-sr__item .rdg-ph--soon { font-size: 8px; line-height: 1.15; padding: 4px; }
 .rdg-sr__text, .rdg-sr__side { display: flex; flex-direction: column; gap: 2px; }
 .rdg-sr__side { align-items: flex-end; }
 .rdg-sr__brand { font-size: var(--fs-caption); font-weight: var(--fw-bold); letter-spacing: .1em; text-transform: uppercase; color: var(--brand); }

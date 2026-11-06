@@ -9,6 +9,19 @@ if ( ! defined( '_S_VERSION' ) ) {
 	define( '_S_VERSION', '1.0.0' );
 }
 
+if ( ! function_exists( 'tw_main_menu_args' ) ) {
+	function tw_main_menu_args( $args = array() ) {
+		$menu = wp_get_nav_menu_object( 'Main Menu' );
+		if ( ! $menu ) {
+			$menu = wp_get_nav_menu_object( 'main-menu' );
+		}
+		if ( $menu ) {
+			$args['menu'] = (int) $menu->term_id;
+		}
+		return $args;
+	}
+}
+
 function ridgeline_setup() {
 	load_theme_textdomain( 'ridgeline', get_template_directory() . '/languages' );
 
@@ -75,7 +88,10 @@ function ridgeline_scripts() {
 	if ( $fonts ) {
 		wp_enqueue_style( 'ridgeline-fonts', $fonts, array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 	}
-	wp_enqueue_style( 'ridgeline-style', get_stylesheet_uri(), array(), ridgeline_asset_version( 'style.css' ) );
+	wp_enqueue_style( 'ridgeline-style', get_template_directory_uri() . '/style.css', array(), ridgeline_asset_version( 'style.css' ) );
+	if ( get_stylesheet() !== get_template() ) {
+		wp_enqueue_style( 'ridgeline-child-style', get_stylesheet_uri(), array( 'ridgeline-style' ), wp_get_theme()->get( 'Version' ) );
+	}
 	wp_add_inline_style( 'ridgeline-style', ridgeline_token_css() );
 
 	wp_enqueue_script( 'ridgeline', get_template_directory_uri() . '/assets/js/ridgeline.js', array(), ridgeline_asset_version( 'assets/js/ridgeline.js' ), true );
